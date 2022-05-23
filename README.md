@@ -1,8 +1,8 @@
 # API Test
 
 
-You can run this using postman.
-The code is run by Javascript.
+**You can run this using postman.
+The code is run by Javascript.**
 
 const response = pm.response.json();
 
@@ -49,3 +49,4 @@ tests["Validating Name: Gallery"] = response.Promotions[1].Name == "Gallery";
 tests["Validating Description: Good position in category"] = response.Promotions[1].Description == "Good position in category";
 
 */
+  
