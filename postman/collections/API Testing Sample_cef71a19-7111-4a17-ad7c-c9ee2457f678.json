@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "e815d264-1e4e-4abc-a765-1f93065f1b05",
+		"name": "API Testing Sample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sample endpoint: Returns details about a particular user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3fcb523d-0177-413b-a23e-8fd8e9d272e4",
+						"exec": [
+							"\r",
+							"const response = pm.response.json();\r",
+							"console.log(response.Name);\r",
+							"console.log(response.CanRelist);\r",
+							"console.log(response.Promotions[1]);\r",
+							"console.log(response.Promotions[1].Name);\r",
+							"console.log(response.Promotions[1].Description);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Name: Carbon credits is ok\", () => {\r",
+							"    pm.expect(response.Name).to.eql(\"Carbon credits\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"CanRelist = True is ok\", () => {\r",
+							"    pm.expect(response.CanRelist).to.be.true;\r",
+							"    pm.expect(response.CanRelist).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The Promotion Name Gallery with Description: Good position in category is ok\", () => {\r",
+							"    pm.expect(response.Promotions[1].Name).to.eql(\"Gallery\");\r",
+							"    pm.expect(response.Promotions[1].Description).to.eql(\"Good position in category\");\r",
+							"});\r",
+							"\r",
+							"/*\r",
+							"Another Code for Valdation\r",
+							"\r",
+							"var response = JSON.parse(responseBody);\r",
+							"tests[\"Validating Status Code\"] = responseCode.code == \"200\";\r",
+							"tests[\"Validating Name: Carbon Credits\"] = response.Name == \"Carbon credits\";\r",
+							"tests[\"Validating CanRelist = true \"] = response.CanRelist == true;\r",
+							"tests[\"Validating Name: Gallery\"] = response.Promotions[1].Name == \"Gallery\";\r",
+							"tests[\"Validating Description: Good position in category\"] = response.Promotions[1].Description == \"Good position in category\";\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "67fc4001-390a-49e4-aa14-29ee7f587b29",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "57a9574a-8eeb-41e3-b2b4-4d5c13173d54",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "975215f6-30be-4565-886d-95a08e7c3b9a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "ef21f088-7b65-484f-8ec1-a007c6a4c58e",
+			"key": "baseUrl",
+			"value": "https://api.tmsandbox.co.nz/v1/Categories/6327/Details.json?catalogue=false",
+			"type": "string"
+		}
+	]
+}
